@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bolt Store</string>
+    <string name="text">A wonderful serenity has taken possession
+        of my entire soul, like these sweet mornings of spring which I
+        enjoy with my whole heart. I am alone, and feel the charm
+        of existence in this spot, which was created for the bliss of souls like mine.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_drawer_open">Navigation Drawer Open</string>
+    <string name="navigation_drawer_close">Navigation Drawer Close</string>
+    <string name="login_button">Login Button</string>
+
+    <string name="welcome"> </string>
+    <string name="welcome_to_bolt">مرحباً بك في بلوت</string>
+    <string name="explore_us">إكتشفنا</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="signup">تسجيل جديد</string>
+    <string name="welcomeImage">صورة ترحيبية</string>
+    <string name="Email">البريد الإلكتروني</string>
+    <string name="Password">كلمة المرور</string>
+    <string name="noAccount">ليس لديك حساب؟</string>
+    <string name="haveAccount">بالفعل لديك حساب؟</string>
+    <string name="Name">الإسم</string>
+    <string name="Categories">التصنيفات</string>
+    <string name="seeAll">رؤية المزيد</string>
+    <string name="Featured">المميزات</string>
+    <string name="bestSell">الأكثر مبيعاً</string>
+    <string name="order_again">الطلب مرة أخرى</string>
+    <string name="Confirmation">تأكيد</string>
+    <string name="backToHome">العودة إلى الرئيسية</string>
+    <string name="success">تمت العملية بنجاح</string>
+    <string name="Addresslane">الشارع أو الحي</string>
+    <string name="city">المدينة</string>
+    <string name="postalCode">الرمز البريدي</string>
+    <string name="phoneNumber">رقم الهاتف</string>
+    <string name="createAddress">إنشاء عنوان</string>
+    <string name="profile">الحساب الشخصي</string>
+    <string name="description">التفاصيل</string>
+    <string name="selectSize">اختيار الحجم</string>
+    <string name="selectColor">اختيار اللون</string>
+    <string name="buy_now">شراء الآن</string>
+    <string name="add_to_cart">إضافة إلى السلة</string>
+    <string name="address">العنوان</string>
+    <string name="AddAddress">إضافة عنوان</string>
+    <string name="continueToPayment">الإستمرار إلى الدفع</string>
+    <string name="ConfirmationMessage">لقد أكملت إجراءات الدفع الخاصة بك بنجاح </string>
+    <string name="Cart">السلة</string>
+    <string name="discount">الخصم</string>
+    <string name="subtotal">المبلغ الإجمالي</string>
+    <string name="shipping">شحن</string>
+    <string name="total">المجموع</string>
+    <string name="buy">شراء</string>
+    <string name="add_card">أضف إلى السلة</string>
+    <string name="checkout">الدفع والإنهاء</string>
+    <string name="language">اللغة</string>
+    <string name="setting">الإعدادات</string>
+    <string name="app_settings">إعدادات التطبيق</string>
+    <string name="my_orders">طلباتي</string>
+    <string name="favorite">المفضلة</string>
+    <string name="my_cart">السلة</string>
+    <string name="home">الرئيسية</string>
+    <string name="More">المزيد</string>
+    <string name="addToCartMessage">تم الإضافة إلى السلة</string>
+    <string name="payment">الدفع</string>
+    <string name="signup2">تسجيل جديد</string>
+    <string name="continue2">إستمرار</string>
+    <string name="search_your_product">ابحث عن منتجك</string>
+    <string name="add_address">إضافة العنوان</string>
+    <string name="WrongEmail">بريد الكتروني خاطئ</string>
+    <string name="WrongPhone">رقم هاتف خاطئ</string>
+    <string name="EmptyField">حقل فارغ</string>
+    <string name="LoginSuccess">تم تسجيل الدخول بنجاح</string>
+    <string name="Message">شيئ ما خاطئ تأكد من بريدك الإلكتروني وكلمة المرور</string>
+    <string name="ServerError">خطأ غير متوقع</string>
+    <string name="English">الإنجليزية</string>
+    <string name="Arabic">العربية</string>
+    <string name="DialogLoading">جاري التحميل</string>
+    <string name="DialogSignup">جاري التسجيل</string>
+    <string name="DialogLogin">تسجيل الدخول</string>
+    <string name="btnOk">تأكيد</string>
+    <string name="ChooseAppLanguage">اختر لغة التطبيق </string>
+    <string name="NotAvalibale">غير متوفر الآن</string>
+    <string name="verify">Verify</string>
+    <string name="activation_code">كود التفعيل</string>
+    <string name="activation_code_message"> تم إرسال رمز التفعيل الخاص بك إلى</string>
+    <string name="Verifying">جاري التحقق</string>
+    <string name="quantity">الكمية</string>
+    <string name="lowestQuantity">هذه هي أقل كمية يمكن تحديدها</string>
+    <string name="stockOut">لا يمكن تحديد المزيد بسبب نفاذ المخزون</string>
+
+
+    <string-array name="navigation">
+        <item>الرئيسية</item>
+        <item>الحساب الشخصي</item>
+        <item>السلة</item>
+        <item>المفضلة</item>
+        <item>طلباتي</item>
+        <item>اللغة</item>
+        <item>الإعدادات</item>
+        <item>تسجيل الخروج</item>
+    </string-array>
+
+
+</resources>

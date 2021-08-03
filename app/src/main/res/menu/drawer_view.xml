@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group >
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/navProfile"
+            android:title="@string/profile" />
+        <item
+            android:id="@+id/navMyCart"
+            android:title="@string/my_cart" />
+        <item
+            android:id="@+id/navFavorite"
+            android:title="@string/favorite" />
+        <item
+            android:id="@+id/navMyOrders"
+            android:title="@string/my_orders" />
+    </group>
+
+
+
+    <item android:title="@string/app_settings">
+        <menu>
+            <group >
+                <item
+                    android:id="@+id/navLanguage"
+                    android:title="@string/language" />
+                <item
+                    android:id="@+id/navSetting"
+                    android:title="@string/setting" />
+
+            </group>
+        </menu>
+    </item>
+
+</menu>

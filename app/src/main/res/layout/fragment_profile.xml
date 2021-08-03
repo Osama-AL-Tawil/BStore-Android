@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.ProfileFragment">
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/linearMargin"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            style="@style/HeaderTitleStyle"
+            android:paddingHorizontal="0dp"
+            android:text="@string/profile" />
+
+        <TextView
+            style="@style/LabelStyle"
+            android:layout_marginTop="30dp"
+            android:text="@string/Name" />
+
+        <EditText
+            android:id="@+id/edName"
+            style="@style/EditTextStyle"
+            android:inputType="textPersonName"
+            android:text="Osama Al Tawil" />
+
+        <TextView
+            style="@style/LabelStyle"
+            android:layout_marginTop="30dp"
+            android:text="@string/Addresslane" />
+
+        <EditText
+            android:id="@+id/edAddress"
+            style="@style/EditTextStyle"
+            android:inputType="text"
+            android:text="GazaCity" />
+
+        <TextView
+            style="@style/LabelStyle"
+            android:layout_marginTop="30dp"
+            android:text="@string/city" />
+
+        <EditText
+            android:id="@+id/edCity"
+            style="@style/EditTextStyle"
+            android:inputType="text"
+            android:text="GazaCity" />
+
+        <TextView
+            style="@style/LabelStyle"
+            android:layout_marginTop="30dp"
+            android:text="@string/postalCode" />
+
+        <EditText
+            android:id="@+id/edPostalCode"
+            style="@style/EditTextStyle"
+            android:inputType="number"
+            android:text="9992" />
+
+        <TextView
+            style="@style/LabelStyle"
+            android:layout_marginTop="30dp"
+            android:text="@string/Email" />
+
+        <EditText
+            android:id="@+id/edEmail"
+            style="@style/EditTextStyle"
+            android:inputType="textEmailAddress"
+            android:text="os_7676@hotmail.com" />
+
+        <TextView
+            style="@style/LabelStyle"
+            android:layout_marginTop="30dp"
+            android:text="@string/phoneNumber" />
+
+        <EditText
+            android:id="@+id/edPhoneNumber"
+            style="@style/EditTextStyle"
+            android:inputType="phone"
+            android:text="+972595613918" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

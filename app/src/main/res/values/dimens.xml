@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--recycler Featured and Favorite Decoration Margin-->
+    <dimen name="marginHorizontal">15dp</dimen>
+    <dimen name="marginTop">5dp</dimen>
+    <dimen name="marginBottom">5dp</dimen>
+    <!--*************************************************-->
+
+    <dimen name="editTextPaddingB">18dp</dimen>
+    <dimen name="linearMargin">25dp</dimen>
+
+    <dimen name="ItemMarginRight">10dp</dimen>
+    <dimen name="ItemMarginLeft">10dp</dimen>
+    <dimen name="ItemMarginTop">5dp</dimen>
+    <dimen name="ItemMarginBottom">5dp</dimen>
+</resources>

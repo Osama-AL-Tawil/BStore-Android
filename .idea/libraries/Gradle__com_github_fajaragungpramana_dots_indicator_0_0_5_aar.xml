@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.fajaragungpramana:dots-indicator:0.0.5@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/40e67b38edef1a5f8688264f8edaeebf/transformed/dots-indicator-0.0.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/40e67b38edef1a5f8688264f8edaeebf/transformed/dots-indicator-0.0.5/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/40e67b38edef1a5f8688264f8edaeebf/transformed/dots-indicator-0.0.5/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.fajaragungpramana/dots-indicator/0.0.5/684d623b63b25e1831859ad307ec0cd248e89102/dots-indicator-0.0.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

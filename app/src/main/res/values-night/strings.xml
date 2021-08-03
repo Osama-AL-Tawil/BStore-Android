@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bolt Store</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome"> </string>
+    <string name="welcome_to_bolt">Welcome to Bolt</string>
+    <string name="explore_us">Explore Us</string>
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="welcomeImage">welcomeImage</string>
+    <string name="login_button">Login Button</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="noAccount">Don’t have an account ?</string>
+    <string name="haveAccount">Already have an account ? </string>
+    <string name="Name">Name</string>
+    <string name="Categories">Categories</string>
+    <string name="seeAll">See all</string>
+    <string name="Featured">Featured</string>
+    <string name="bestSell">Best Sell</string>
+    <string name="order_again">Order Again</string>
+    <string name="Confirmation">Confirmation</string>
+    <string name="backToHome">Back to Home</string>
+    <string name="success">You have successfully \n completed your payment procedure</string>
+    <string name="Addresslane">Address lane</string>
+    <string name="city">City</string>
+    <string name="postalCode">PostalCode</string>
+    <string name="phoneNumber">Phone Number</string>
+    <string name="createAddress">Create Address</string>
+    <string name="profile">Profile</string>
+    <string name="text">A wonderful serenity has taken possession
+        of my entire soul, like these sweet mornings of spring which I
+        enjoy with my whole heart. I am alone, and feel the charm
+        of existence in this spot, which was created for the bliss of souls like mine.</string>
+    <string name="description">Description</string>
+    <string name="selectSize">SelectSize</string>
+    <string name="selectColor">SelectColor</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="address">Address</string>
+    <string name="AddAddress">Add Address</string>
+    <string name="continueToPayment">Continue To Payment</string>
+    <string name="Cart">Cart</string>
+    <string name="discount">Discount</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="shipping">Shipping</string>
+    <string name="total">Total</string>
+    <string name="buy">Buy</string>
+    <string name="add_card">Add Card</string>
+    <string name="checkout">Checkout</string>
+    <string name="language">Language</string>
+    <string name="setting">Settings</string>
+    <string name="app_settings">App Settings</string>
+    <string name="my_orders">My Orders</string>
+    <string name="favorite">Favorite</string>
+    <string name="my_cart">My Cart</string>
+    <string name="home">Home</string>
+    <string name="navigation_drawer_open">Navigation Drawer Open</string>
+    <string name="navigation_drawer_close">Navigation Drawer Close</string>
+    <string name="payment">Payment</string>
+    <string name="signup2">SignUp</string>
+    <string name="continue2">Continue</string>
+    <string name="search_your_product">Search Your Product</string>
+    <string name="add_address">Add Address</string>
+    <string name="WrongEmail">Wrong Email Address</string>
+    <string name="WrongPhone">Wrong Phone Number</string>
+    <string name="EmptyField">Empty Field</string>
+    <string name="LoginSuccess">Login Success</string>
+    <string name="Message">Something is Wrong ,Check your email and Password</string>
+    <string name="ServerError">Something is Wrong</string>
+    <string name="English">English</string>
+    <string name="Arabic">Arabic</string>
+    <string name="More">More</string>
+    <string name="addToCartMessage">The product Add to Cart</string>
+    <string name="DialogLoading">Loading</string>
+    <string name="DialogSignup">SignUp</string>
+    <string name="DialogLogin">Login</string>
+    <string name="btnOk">Ok</string>
+    <string name="ChooseAppLanguage">Choose app language to enjoy application</string>
+    <string name="NotAvalibale">Not Available Now</string>
+    <string name="verify">Verify</string>
+    <string name="activation_code">Activation Code</string>
+    <string name="activation_code_message">Activation Code Message</string>
+    <string name="quantity">Quantity</string>
+
+
+    <string-array name="navigation">
+        <item>Home</item>
+        <item>Profile</item>
+        <item>MyCart</item>
+        <item>Favorite</item>
+        <item>MyOrders</item>
+        <item>Language</item>
+        <item>Setting</item>
+        <item>Logout</item>
+    </string-array>
+
+
+</resources>
