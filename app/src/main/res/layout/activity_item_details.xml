@@ -75,19 +75,20 @@
         android:paddingHorizontal="@dimen/_18sdp"
         android:text="Black turtleneck top"
         android:textColor="@color/black"
-        android:layout_marginEnd="@dimen/_37sdp"
+        android:layout_marginEnd="@dimen/_40sdp"
         android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/btnFavorite"
-        android:layout_width="@dimen/_16sdp"
-        android:layout_height="@dimen/_16sdp"
-        android:layout_marginEnd="@dimen/_18sdp"
-        android:layout_gravity="end|center_vertical"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:padding="@dimen/_5sdp"
+        android:layout_gravity="end"
+        android:src="@drawable/ic_favorite_black"
+        android:scaleType="centerInside"
         android:foreground="?attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@drawable/ic_favorite" />
+        />
 </FrameLayout>
 
 

@@ -2,18 +2,16 @@ package com.os_tec.store.Fragments.Search
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.os_tec.store.Adapters.ItemsAdapter
 import com.os_tec.store.Classes.RecyclerViewDecoration
-import com.os_tec.store.Model.ProductsDataModel
+import com.os_tec.store.Model.ProductsModel
 import com.os_tec.store.R
 import com.os_tec.store.databinding.FragmentSearchBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -42,7 +40,7 @@ lateinit var viewModel: SearchViewModel
 
 
         //observe ->get Data
-        observeData()
+       // observeData()
 
         //search edit text
         binding.edSearch.requestFocus()//showKeyboard
@@ -53,40 +51,28 @@ lateinit var viewModel: SearchViewModel
             if (text!!.count()>1){
                 binding.progressBar.visibility=View.VISIBLE //show progressBar
                 binding.btnClear.visibility = View.VISIBLE //show clear btn in edit text
-                viewModel.search(text.toString()) // get data ->ViewModel
-
-            }else{
-
-//                val adapter=ItemsAdapter(requireActivity(),ArrayList())
-//                binding.rcSearch.adapter=adapter
-//                adapter.notifyDataSetChanged()
-//                viewModel.search("*#*#*#*")
-                Log.e("SearchText","")
+                getData(text.toString()) //viewModel
 
             }
-
-
         }
 
         //hideKeyboard
         binding.btnClear.setOnClickListener {
             hideAndClear()
         }
-//        binding.edSearch.setOnClickListener {
-//          hideKeyboard()
-//        }
+
 
 
 
         return binding.root
     }
 
-    private fun observeData(){
-        viewModel.searchLiveData.observe(viewLifecycleOwner, Observer {
-            binding.progressBar.visibility=View.GONE //hide progressBar
+    private fun getData(text: String){
+        viewModel.search(requireActivity(), text).observe(viewLifecycleOwner, {
+            binding.progressBar.visibility = View.GONE //hide progressBar
             setAdapter(it) //set adapter and data
-
         })
+
     }
 
     private fun hideAndClear() {
@@ -103,7 +89,7 @@ lateinit var viewModel: SearchViewModel
         imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 
-    private fun setAdapter(arrayList: ArrayList<ProductsDataModel>) {
+    private fun setAdapter(arrayList: ArrayList<ProductsModel>) {
         val adapter = ItemsAdapter(requireActivity(), arrayList)
         binding.rcSearch.adapter = adapter
     }

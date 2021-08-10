@@ -19,20 +19,20 @@ class ConfirmationFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentConfirmationBinding.inflate(inflater, container, false)
-
+        (activity as Navigation2Activity).backPressedNV=4
         (requireActivity() as Navigation2Activity).supportActionBar!!.hide()
 
         binding.btnBackHome.setOnClickListener {
             requireActivity().finish()
         }
 
-        //on backPressed Clicked-------------------------------------------------------------------
-        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    requireActivity().finish()
-                }
-            })
+//        //on backPressed Clicked-------------------------------------------------------------------
+//        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner,
+//            object : OnBackPressedCallback(true) {
+//                override fun handleOnBackPressed() {
+//                    requireActivity().finish()
+//                }
+//            })
 
         return binding.root
     }

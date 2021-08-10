@@ -20,10 +20,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.navigation.NavigationView
 import com.os_tec.store.Adapters.NavigationAdapter
+import com.os_tec.store.Api.ApiRepository
+import com.os_tec.store.Classes.ConnectivityReceiver
 import com.os_tec.store.Classes.SharedPreferences
 import com.os_tec.store.Fragments.*
 import com.os_tec.store.Fragments.Favorite.FavoriteFragment
 import com.os_tec.store.Fragments.Home.HomeFragment
+import com.os_tec.store.Fragments.MyOrder.MyOrderFragment
 import com.os_tec.store.R
 import com.os_tec.store.databinding.ActivityNavigationBinding
 import com.os_tec.store.databinding.BottomSheetBinding
@@ -40,50 +43,45 @@ class MainNavigation : AppCompatActivity() {
     var activeFragment:Fragment?=null
     var homeFragment: HomeFragment = HomeFragment()
     var profileFragment=ProfileFragment()
-    var myOrderFragment:MyOrderFragment= MyOrderFragment()
+    var myOrderFragment: MyOrderFragment = MyOrderFragment()
     var favoriteFragment: FavoriteFragment = FavoriteFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNavigationBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
-        // Find our drawer view
-        drawerLayout = binding.drawerLayout
-        nvDrawer = binding.nvView
-
-        // Set a Toolbar
-        toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-
-        //set toolbar options
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu)
 
 
-        // ArrayList Items for rcNavigationDrawer
-        val nvArray = ArrayList<String>()
-        nvArray.addAll(resources.getStringArray(R.array.navigation))
+            // Find our drawer view
+            drawerLayout = binding.drawerLayout
+            nvDrawer = binding.nvView
+
+            // Set a Toolbar
+            toolbar = findViewById(R.id.toolbar)
+            setSupportActionBar(toolbar)
+
+            //set toolbar options
+            supportActionBar!!.setDisplayShowTitleEnabled(false)
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_menu)
 
 
 
-        binding.rcNavigationView.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            //set Navigation Drawer
+            setNavigationDrawer()
 
-        val adapter = NavigationAdapter(this, nvArray)
-        binding.rcNavigationView.adapter = adapter
-
-        //start fragment
-        replaceFragment(homeFragment)
+            //start fragment
+            startFragment(homeFragment)
 
 
-        //close Drawer
-        binding.btnCloseNav.setOnClickListener {
-            drawerLayout!!.closeDrawer(GravityCompat.START)
+            //close Drawer
+            binding.btnCloseNav.setOnClickListener {
+                drawerLayout!!.closeDrawer(GravityCompat.START)
 
-        }
+            }
 
-// adding on click listener for our button.
+
+
 
 
 
@@ -107,42 +105,82 @@ class MainNavigation : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onBackPressed() {
+        if(activeFragment!=homeFragment){
+            startFragment(homeFragment)
+        }else{
+            super.onBackPressed()
+        }
+    }
+
+
+
+    private fun setNavigationDrawer(){
+        //set Navigation Layout
+        binding.rcNavigationView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        // ArrayList Items for rcNavigationDrawer
+        val nvArray = ArrayList<String>()
+        nvArray.addAll(resources.getStringArray(R.array.navigation))
+
+        //set data and adapter
+        val adapter = NavigationAdapter(this, nvArray)
+        binding.rcNavigationView.adapter = adapter
+    }
+
 
 
 
     @RequiresApi(Build.VERSION_CODES.M)
     fun navigateToFragment(nv: Int) {
         when (nv) {
-            0 -> {
-                replaceFragment(homeFragment)
-            }
-            1 -> {
-                replaceFragment(profileFragment)
+            0 -> {//homeFragment
+                startFragment(homeFragment)
             }
 
-            2 -> {
-                replaceFragment(homeFragment)
-                val i = Intent(this, Navigation2Activity::class.java)
-                i.putExtra("nv", "cart")
-                startActivity(i)
+            1 -> {//ProfileFragment
+                startFragment(profileFragment)
             }
-            3 -> {
-                replaceFragment(favoriteFragment)
 
+            2 -> {//CartFragment
+                if (ConnectivityReceiver().checkInternet(this)){
+                    startFragment(homeFragment)
+                    val i = Intent(this, Navigation2Activity::class.java)
+                    i.putExtra("nv", "cart")
+                    startActivity(i)
+                }
             }
-            4 -> {
-                replaceFragment(myOrderFragment)
 
+            3 -> {//FavoriteFragment
+                if (ConnectivityReceiver().checkInternet(this)){
+                    startFragment(favoriteFragment)
+                }
             }
-            5 -> {
+
+            4 -> {//MyOrderFragment
+                if (ConnectivityReceiver().checkInternet(this)){
+                    startFragment(myOrderFragment)
+
+                }
+            }
+
+            5 -> {//Language
              showBottomSheet()
             }
-            6 -> {
+
+            6 -> {//Settings
+                startFragment(homeFragment)
+                val i = Intent(this, Navigation3Activity::class.java)
+                i.putExtra("nv", "setting")
+                startActivity(i)
             }
-            7 -> {
-                SharedPreferences(this).logout()
-                startActivity(Intent(this,Navigation3Activity::class.java))
-                finish()
+
+            7 -> {//Logout
+                if (ConnectivityReceiver().checkInternet(this)){
+                    ApiRepository(this).logout("logout")
+
+                }
             }
 
         }
@@ -152,7 +190,7 @@ class MainNavigation : AppCompatActivity() {
     }
 
 
-    private fun replaceFragment(fragment: Fragment) {
+    private fun startFragment(fragment: Fragment) {
         if (fragment.isAdded) {
             if(fragment!=activeFragment){
                 supportFragmentManager.beginTransaction().remove(activeFragment!!).hide(activeFragment!!).commit()
@@ -171,14 +209,6 @@ class MainNavigation : AppCompatActivity() {
     }
 
 
-    override fun onBackPressed() {
-        if(activeFragment!=homeFragment){
-            replaceFragment(homeFragment)
-        }else{
-            super.onBackPressed()
-        }
-    }
-
 
 
   //bottom sheet to change app language
@@ -195,7 +225,7 @@ class MainNavigation : AppCompatActivity() {
 
 
          //get current language and select button
-        when(SharedPreferences(this).getAppLanguage()){
+        when(SharedPreferences().getAppLanguage()){
             "en"->{
                 checkedButton(binding.btnEnglish)
                 unCheckedButton(binding.btnArabic)
@@ -215,7 +245,7 @@ class MainNavigation : AppCompatActivity() {
             //store app language value in SharedPreferences
             Log.e("HomeFragment",language)
 
-            SharedPreferences(this).setAppLanguage(language)
+            SharedPreferences().setAppLanguage(language)
             dialog.dismiss()
             //restart App
             startActivity(Intent(applicationContext, SplashActivity::class.java))
@@ -258,6 +288,7 @@ class MainNavigation : AppCompatActivity() {
         button.setBackgroundColor(ContextCompat.getColor(this,R.color.gray3))
         button.setTextColor(ContextCompat.getColor(this,R.color.black))
     }
+
 
 
 }

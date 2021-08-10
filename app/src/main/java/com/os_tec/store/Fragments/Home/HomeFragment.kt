@@ -1,29 +1,29 @@
 package com.os_tec.store.Fragments.Home
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import androidx.core.widget.doOnTextChanged
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.os_tec.store.Activities.Navigation3Activity
+import com.os_tec.store.Activities.ShowItems.ShowItemsActivity
 import com.os_tec.store.Adapters.CategoriseAdapter
 import com.os_tec.store.Adapters.ItemsAdapter
-import com.os_tec.store.Classes.CustomAlertDialog
-import com.os_tec.store.R
+import com.os_tec.store.Model.CategoryModel
+import com.os_tec.store.Model.ProductsModel
 import com.os_tec.store.databinding.FragmentHomeBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
+import java.io.Serializable
 
 
 @DelicateCoroutinesApi
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
     lateinit var viewModel: HomeViewModel
-    lateinit var customAlertDialog:CustomAlertDialog
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,43 +32,26 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         viewModel= HomeViewModel()
-        customAlertDialog= CustomAlertDialog(requireActivity())
 
-        binding.rcCategories.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rcBestCell.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rcFeatured.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-
-
-        loadData()//get data from api
-
-        observeData()//observe Data and set adapter
+        setLayout()//set layoutManager
+        loadData()//get data from api  and set adapter
 
 
         binding.categoriesSeeAll.setOnClickListener {
-            val i = Intent(requireContext(), SeeAllActivity::class.java)
-            i.putExtra("nv", "Categories")
-            i.putExtra("data", viewModel.categoryArrayList)
-            startActivity(i)
+            showActivity("Categories", viewModel.categoryArrayList)
+
         }
 
 
         binding.btnFeaturedSeeAll.setOnClickListener {
-            val i = Intent(requireContext(), SeeAllActivity::class.java)
-            i.putExtra("nv", "Featured")
-            i.putExtra("data", viewModel.featuredProductsArrayList)
-            startActivity(i)
+            showActivity("Featured", viewModel.featuredProductsArrayList)
+
         }
 
 
         binding.bestSellSeeAll.setOnClickListener {
-            val i = Intent(requireContext(), SeeAllActivity::class.java)
-            i.putExtra("nv", "BestSell")
-            i.putExtra("data", viewModel.bestSellProductsArrayList)
+            showActivity("BestSell", viewModel.bestSellProductsArrayList)
 
-            startActivity(i)
         }
 
 
@@ -84,46 +67,86 @@ class HomeFragment : Fragment() {
 
 
 
-
         return binding.root
     }
 
-
-
-   private fun loadData() {
-       customAlertDialog.showDialog(resources.getString(R.string.DialogLoading))
-        viewModel.loadData()
-
-    }
-
-    private fun observeData(){
-
-        viewModel.categoryLiveData.observe(viewLifecycleOwner, {
-            val adapterCategory = CategoriseAdapter(requireActivity(), it)
-            binding.rcCategories.adapter = adapterCategory
-            binding.scrolLayout.visibility=View.VISIBLE
-            customAlertDialog.dismissDialog()
-        })
-
-
-        viewModel.featuredProductsLiveData.observe(viewLifecycleOwner, {
-            val adapterItems = ItemsAdapter(requireActivity(), it)
-            binding.rcFeatured.adapter = adapterItems
-        })
-
-        viewModel.bestSellProductsLiveData.observe(viewLifecycleOwner, {
-            val adapterItems = ItemsAdapter(requireActivity(), it)
-            binding.rcBestCell.adapter = adapterItems
-        })
-
-
-
-
+    //start Activity
+    private fun showActivity(nv:String,data: Serializable){
+        val i = Intent(requireContext(), ShowItemsActivity::class.java)
+        i.putExtra("nv", nv)
+        i.putExtra("data", data)
+        startActivity(i)
     }
 
 
 
 
+
+
+    private fun loadData(){
+
+
+        viewModel.loadData(requireActivity()).observe(viewLifecycleOwner,{
+            val status=it.status
+            val message=it.failureMessage
+
+            if (status){//true -> Array NotEmpty
+                binding.errorLayout.root.visibility=View.GONE //errorLayout
+                binding.scrolLayout.visibility = View.VISIBLE
+
+                //set data and adapter
+                setCategoryAdapter(it.data.categories)
+                setFeaturedAdapter(it.data.featured_products)
+                setBestCellAdapter(it.data.best_sell_products)
+
+            } else { //handle internet or any error by show FailureMessage layout //EmptyArray
+                binding.errorLayout.root.visibility = View.VISIBLE
+                binding.errorLayout.errorMessage.text=message
+                binding.errorLayout.btnAction.setOnClickListener {
+                    loadData()
+                }
+            }
+
+        })
+
+    }
+
+
+
+    private fun setLayout(){
+        binding.rcCategories.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        binding.rcBestCell.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        binding.rcFeatured.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+    }
+
+
+    fun setCategoryAdapter(data: ArrayList<CategoryModel>) {
+        val adapterCategory = CategoriseAdapter(requireActivity(), data)//set data
+        //set data in arrays to show all products -> onclick (seeAll)
+        viewModel.categoryArrayList.addAll(data)
+        binding.rcCategories.adapter = adapterCategory
+    }
+
+
+    fun setFeaturedAdapter(data: ArrayList<ProductsModel>) {
+        val adapterItems = ItemsAdapter(requireActivity(), data)//set data
+        //set data in arrays to show all products -> onclick (seeAll)
+        viewModel.featuredProductsArrayList.addAll(data)
+        binding.rcFeatured.adapter = adapterItems
+    }
+
+
+    fun setBestCellAdapter(data: ArrayList<ProductsModel>) {
+        val adapterItems = ItemsAdapter(requireActivity(), data)//set data
+        //set data in arrays to show all products -> onclick (seeAll)
+        viewModel.bestSellProductsArrayList.addAll(data)
+        binding.rcBestCell.adapter = adapterItems
+    }
 
 
 }

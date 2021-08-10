@@ -88,6 +88,21 @@
     <string name="quantity">الكمية</string>
     <string name="lowestQuantity">هذه هي أقل كمية يمكن تحديدها</string>
     <string name="stockOut">لا يمكن تحديد المزيد بسبب نفاذ المخزون</string>
+    <string name="currentQuantity">لا يمكنك تحديد هذه الكمية لأن الكمية المتوفرة هي</string>
+    <string name="relode">إعادة التحميل</string>
+    <string name="noInternet">لا يتوفر اتصال بالانترنت</string>
+    <string name="reset_password">إعادة تعيين كلمة المرور</string>
+    <string name="old_password">كلمة المرور القديمة</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="password_sent">سيتم ارسال كلمة المرور الى بريدك الالكتروني</string>
+    <string name="send_password">إرسال كلمة المرور</string>
+    <string name="forget_password">نسيت كلمة المرور</string>
+    <string name="forget_password2">نسيت كلمة المرور؟</string>
+    <string name="skip">تخطي</string>
+    <string name="next">التالي</string>
+    <string name="start_now">إبدأ الآن</string>
+    <string name="no_products_cart">لا يوجد منتجات بالسلة</string>
 
 
     <string-array name="navigation">

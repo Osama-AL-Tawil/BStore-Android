@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
+import com.os_tec.store.Classes.ConnectivityReceiver
 import com.os_tec.store.Fragments.*
+import com.os_tec.store.Fragments.Cart.CartFragment
 import com.os_tec.store.R
 import com.os_tec.store.databinding.ActivityNavigation2Binding
 
@@ -17,6 +19,7 @@ class Navigation2Activity : AppCompatActivity() {
     var checkOutFragment = CheckoutFragment()
     var confirmationFragment = ConfirmationFragment()
     var activeFragment: Fragment? = null
+    var backPressedNV=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +37,13 @@ class Navigation2Activity : AppCompatActivity() {
             "cart" -> {
                 startFragment(cartFragment)
             }
+
+            "confirmation" -> {
+                startFragment(confirmationFragment)
+            }
         }
+
+
 
     }
 
@@ -47,19 +56,55 @@ class Navigation2Activity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun startFragment(fragment: Fragment) {
-         if (fragment.isAdded) {
-            supportFragmentManager.beginTransaction().remove(activeFragment!!).hide(activeFragment!!).commit()
-            supportFragmentManager.beginTransaction().show(fragment).commit()
-            activeFragment=fragment
 
-        } else {
-            supportFragmentManager.beginTransaction().add(R.id.container2, fragment).commit()
-            if (activeFragment != null) {
-                supportFragmentManager.beginTransaction().hide(activeFragment!!).commit()
+
+    override fun onBackPressed() {
+        when (backPressedNV) {
+            1 -> {//cart
+                backPressedNV = 0
+                startFragment(cartFragment)
             }
-            activeFragment=fragment
 
+//            1 -> {//cart
+//                backPressedNV=0
+//                finish()
+//            }
+//
+//            2 -> {//payment
+//                backPressedNV=1
+//                startFragment(cartFragment)
+//            }
+//
+//            3 -> {//checkout
+//                backPressedNV=2
+//                startFragment(paymentFragment)
+//            }
+
+            else -> {
+                finish()
+            }
         }
+    }
+
+
+
+
+    fun startFragment(fragment: Fragment) {
+        if (ConnectivityReceiver().checkInternet(this)){
+            if (fragment.isAdded) {
+                supportFragmentManager.beginTransaction().remove(activeFragment!!).hide(activeFragment!!).commit()
+                supportFragmentManager.beginTransaction().show(fragment).commit()
+                activeFragment=fragment //newFragment
+
+            } else {
+                supportFragmentManager.beginTransaction().add(R.id.container2, fragment).commit()
+                if (activeFragment != null) {
+                    supportFragmentManager.beginTransaction().hide(activeFragment!!).commit()
+                }
+                activeFragment=fragment //newFragment
+
+            }
+        }
+
     }
 }

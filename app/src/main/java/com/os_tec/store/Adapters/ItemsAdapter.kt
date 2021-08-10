@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.os_tec.store.Activities.ItemDetails.ItemDetailsActivity
-import com.os_tec.store.Model.ProductsDataModel
+import com.os_tec.store.Model.ProductsModel
 import com.os_tec.store.R
 import com.os_tec.store.databinding.RcItemsBinding
 
-class ItemsAdapter (val activity: Activity, val data: ArrayList<ProductsDataModel>) :
+class ItemsAdapter (val activity: Activity, val data: ArrayList<ProductsModel>) :
     RecyclerView.Adapter<ItemsAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

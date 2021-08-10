@@ -87,6 +87,21 @@
     <string name="quantity">Quantity</string>
     <string name="lowestQuantity">This is the lowest quantity that can be determined</string>
     <string name="stockOut">Cannot be determined more due to stock out</string>
+    <string name="currentQuantity">You cannot specify this quantity because the available quantity is</string>
+    <string name="relode">Reload</string>
+    <string name="noInternet">No internet connection available</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password_sent">The password will be sent to your email</string>
+    <string name="send_password">Send password</string>
+    <string name="forget_password">Forget password</string>
+    <string name="forget_password2">Forget Password ?</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="start_now">Start Now</string>
+    <string name="no_products_cart">There are no products in the cart</string>
 
     <string-array name="navigation">
         <item>Home</item>

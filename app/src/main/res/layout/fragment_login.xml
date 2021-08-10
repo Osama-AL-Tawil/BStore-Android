@@ -24,26 +24,26 @@
             android:text="@string/login"
             android:textColor="@color/black1"
             android:textSize="@dimen/_30sdp" />
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/emailTextInputLayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            app:hintAnimationEnabled="true"-->
-<!--            >-->
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:hint="@string/Email"-->
-<!--                android:inputType="textEmailAddress"-->
-<!--                android:textAlignment="viewStart"-->
-<!--                android:paddingStart="0dp"-->
-<!--                android:paddingEnd="0dp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textColorHint="@color/black"-->
-<!--                android:textSize="@dimen/_14sdp"-->
-<!--                app:backgroundTint="@android:color/transparent" />-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/emailTextInputLayout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            app:hintAnimationEnabled="true"-->
+        <!--            >-->
+        <!--            <com.google.android.material.textfield.TextInputEditText-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:hint="@string/Email"-->
+        <!--                android:inputType="textEmailAddress"-->
+        <!--                android:textAlignment="viewStart"-->
+        <!--                android:paddingStart="0dp"-->
+        <!--                android:paddingEnd="0dp"-->
+        <!--                android:textColor="@color/black"-->
+        <!--                android:textColorHint="@color/black"-->
+        <!--                android:textSize="@dimen/_14sdp"-->
+        <!--                app:backgroundTint="@android:color/transparent" />-->
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
 
         <TextView
@@ -62,7 +62,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
             android:text="@string/Password" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -76,17 +75,27 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edPassword"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
+                android:layout_height="wrap_content"
                 android:background="@color/toolbarColor"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/btnForgetPassword"
+            style="@style/LabelStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/forget_password2"
+            android:textColor="@color/blue1"
+            />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
             style="@style/buttonStyle"
             android:layout_marginHorizontal="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:text="@string/login"
 
             />

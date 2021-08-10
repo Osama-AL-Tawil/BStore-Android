@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/checkoutLayout"
+    android:visibility="invisible"
     tools:context=".Fragments.CheckoutFragment">
 
     <FrameLayout
@@ -37,7 +39,7 @@
                 android:id="@+id/recyclerCheckOut"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_250sdp"
-                tools:listitem="@layout/rc_checkout" />
+                tools:listitem="@layout/rc_order" />
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -105,6 +107,7 @@
                         android:paddingTop="@dimen/_14sdp">
 
                         <TextView
+                            android:id="@+id/subtotal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
@@ -117,7 +120,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
-                            android:text="$160.00"
                             android:textColor="@color/black1"
                             android:textSize="@dimen/_14sdp" />
                     </FrameLayout>
@@ -141,7 +143,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
-                            android:text="%5"
+                            android:text="%0"
                             android:textColor="@color/black1"
                             android:textSize="16sp" />
                     </FrameLayout>
@@ -166,7 +168,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
-                            android:text="$10.00"
+                            android:text="$0.00"
                             android:textColor="@color/black1"
                             android:textSize="@dimen/_14sdp" />
                     </FrameLayout>
@@ -199,7 +201,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
-                            android:text="$10.00"
+                            android:text="0"
                             android:textColor="@color/black1"
                             android:textSize="@dimen/_14sdp" />
                     </FrameLayout>

@@ -19,7 +19,7 @@ data class Test(
 data class RegistrationResponse(
     @SerializedName("status") val status:Boolean,
     @SerializedName("message") val message:String,
-    @SerializedName("data") val body:BodyObject
+    @SerializedName("data") val data:BodyObject
 )
 
 data class BodyObject(

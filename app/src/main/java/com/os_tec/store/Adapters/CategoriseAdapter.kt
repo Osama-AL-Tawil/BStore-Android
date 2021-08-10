@@ -1,19 +1,21 @@
 package com.os_tec.store.Adapters
 
 import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.os_tec.store.Model.CategoryObject
+import com.os_tec.store.Activities.ShowItems.ShowItemsActivity
+import com.os_tec.store.Model.CategoryModel
 import com.os_tec.store.R
 import com.os_tec.store.databinding.RcCategoriesBinding
 import com.os_tec.store.databinding.RcCategoriesMBinding
+import kotlinx.coroutines.DelicateCoroutinesApi
 
-class CategoriseAdapter(val activity: Activity, val data: ArrayList<CategoryObject>) :
+@DelicateCoroutinesApi
+class CategoriseAdapter(val activity: Activity, val data: ArrayList<CategoryModel>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val seeAllCategories:Int=1
     var view=0
@@ -56,18 +58,36 @@ class CategoriseAdapter(val activity: Activity, val data: ArrayList<CategoryObje
 
         return viewType
     }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder.itemViewType){
             seeAllCategories->{
                 val viewHolder= holder as SeeAllCategories
                 Glide.with(activity).load(data[position].image).into(viewHolder.binding.categoriesImage)
                 viewHolder.binding.categoriesName.text=data[position].name
+
+                viewHolder.binding.cardView.setOnClickListener {
+                    val i=Intent(activity, ShowItemsActivity::class.java)
+                    i.putExtra("nv","ShowCategoryItems")
+                    i.putExtra("category_id",data[position].id)
+                    i.putExtra("title",data[position].name)
+
+                    activity.startActivity(i)
+                }
             }
 
             else->{
                 val viewHolder= holder as MainCategories
                 Glide.with(activity).load(data[position].image).into(viewHolder.binding.categoriesImage)
                 viewHolder.binding.categoriesName.text=data[position].name
+
+                viewHolder.binding.cardView.setOnClickListener {
+                    val i=Intent(activity, ShowItemsActivity::class.java)
+                    i.putExtra("nv","ShowCategoryItems")
+                    i.putExtra("category_id",data[position].id)
+                    i.putExtra("title",data[position].name)
+                    activity.startActivity(i)
+                }
             }
 
         }

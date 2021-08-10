@@ -7,7 +7,7 @@
     tools:context=".Fragments.Home.HomeFragment">
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/homeLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -17,7 +17,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-
+<include
+    android:id="@+id/errorLayout"
+    layout="@layout/error_layout"
+    android:visibility="gone"
+    />
         <ScrollView
             android:id="@+id/scrolLayout"
             android:layout_width="match_parent"

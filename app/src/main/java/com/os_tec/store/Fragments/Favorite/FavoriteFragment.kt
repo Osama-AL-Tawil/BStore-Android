@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.os_tec.store.Adapters.FavoriteAdapter
 import com.os_tec.store.databinding.FragmentFavoriteBinding
 
@@ -20,9 +21,10 @@ class FavoriteFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding= FragmentFavoriteBinding.inflate(inflater,container,false)
+        binding.rcFavorite.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         viewModel= FavoriteViewModel()
 
-        observeFavorite()
+        observeFavorite()//get data and setAdapter
 
 
         return binding.root
@@ -30,9 +32,7 @@ class FavoriteFragment : Fragment() {
 
 
     private fun observeFavorite() {
-        viewModel.getFavorite() //get Data..
-
-        viewModel.favoriteLiveData.observe(viewLifecycleOwner, {
+        viewModel.getFavorite(requireActivity()).observe(viewLifecycleOwner, {
             val adapter = FavoriteAdapter(requireActivity(), it)
             binding.rcFavorite.adapter = adapter
         })

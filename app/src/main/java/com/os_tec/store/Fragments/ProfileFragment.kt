@@ -18,7 +18,7 @@ class ProfileFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding= FragmentProfileBinding.inflate(inflater,container,false)
-        val data=SharedPreferences(requireContext()).getUserData().body
+        val data=SharedPreferences().getUserData().data
         binding.edEmail.setText(data.email)
         binding.edName.setText(data.email)
         binding.edPhoneNumber.setText(data.mobile)

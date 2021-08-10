@@ -4,21 +4,23 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.os_tec.store.Model.CartDataModel
+import com.bumptech.glide.Glide
+import com.os_tec.store.Model.MyOrderModel
+import com.os_tec.store.Model.MyOrderResponseModel
 import com.os_tec.store.R
+import com.os_tec.store.databinding.RcOrderBinding
 
-class MyOrderAdapter (val activity: Activity, val data: ArrayList<CartDataModel>) :
+class MyOrderAdapter (val activity: Activity, val data: ArrayList<MyOrderModel>) :
     RecyclerView.Adapter<MyOrderAdapter.MyViewHolder>() {
 
     class MyViewHolder(item: View) : RecyclerView.ViewHolder(item) {
-        val imageView=item.findViewById<ImageView>(R.id.orderImageView)!!
-        val title=item.findViewById<TextView>(R.id.ordetTitle)!!
-        val brand=item.findViewById<TextView>(R.id.orderBrand)!!
-        val price=item.findViewById<TextView>(R.id.orderPrice)!!
-        val btnOrderAgain=item.findViewById<TextView>(R.id.btnOrderAgain)!!
+        val binding=RcOrderBinding.bind(item)
+        val imageView=binding.orderImageView
+        val title=binding.ordetTitle
+        val brand=binding.orderBrand
+        val price=binding.orderPrice
+        val btnOrderAgain=binding.btnOrderAgain
 
     }
 
@@ -35,16 +37,15 @@ class MyOrderAdapter (val activity: Activity, val data: ArrayList<CartDataModel>
 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val image = data[position].image
-        val title = data[position].title
-        val brand = data[position].brand
-        val price = data[position].price
-        //val count = data[position].count
+        var title=""
+        for (i in data[position].product){
+            title+=i.title
+        }
 
-        holder.imageView.setImageResource(image)
+        Glide.with(activity).load(data[position].product[0].attachments[0].image).into(holder.imageView)
         holder.title.text = title
-        holder.brand.text = brand
-        holder.price.text = price
+        holder.brand.text = data[position].created_at
+        holder.price.text = data[position].price.toString()
 
 
 

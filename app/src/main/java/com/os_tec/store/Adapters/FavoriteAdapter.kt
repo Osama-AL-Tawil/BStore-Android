@@ -11,16 +11,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.os_tec.store.Activities.ItemDetails.ItemDetailsActivity
-import com.os_tec.store.Fragments.Favorite.FavoriteViewModel
-import com.os_tec.store.Model.ItemsDataModel
-import com.os_tec.store.Model.ProductsDataModel
+import com.os_tec.store.Api.ApiRepository
+import com.os_tec.store.Model.ProductsModel
 import com.os_tec.store.R
 import com.os_tec.store.databinding.RcFavoriteBinding
 
-class FavoriteAdapter (val activity: Activity, val data: ArrayList<ProductsDataModel>) :
+class FavoriteAdapter (val activity: Activity, val data: ArrayList<ProductsModel>) :
     RecyclerView.Adapter<FavoriteAdapter.MyViewHolder>() {
-
-     lateinit var viewModel:FavoriteViewModel
 
     class MyViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         val binding=RcFavoriteBinding.bind(item)
@@ -46,9 +43,8 @@ class FavoriteAdapter (val activity: Activity, val data: ArrayList<ProductsDataM
         holder.description.text=data[position].description
 
         holder.btnFavorite.setOnClickListener {
-            viewModel = FavoriteViewModel()
             //remove data from db
-            viewModel.addAndRemoveFavorite(data[position].id, 0)
+            ApiRepository(activity).addInFavorite("FavoriteAdapter",data[position].id,0)
             //remove data form array
             data.remove(data[position])
             notifyItemRemoved(position)
@@ -61,6 +57,8 @@ class FavoriteAdapter (val activity: Activity, val data: ArrayList<ProductsDataM
             intent.putExtra("id",data[position].id)
             activity.startActivity(intent)
         }
+
+
     }
 
     override fun getItemCount(): Int {

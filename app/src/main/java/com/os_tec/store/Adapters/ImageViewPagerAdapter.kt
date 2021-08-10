@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.Glide
-import com.os_tec.store.Model.AttachmentsData
+import com.os_tec.store.Model.AttachmentsModel
 import com.os_tec.store.R
 import com.os_tec.store.databinding.RcImageViewpagerBinding
 
-class ImageViewPagerAdapter(var context: Context, var data: ArrayList<AttachmentsData>) : PagerAdapter() {
+class ImageViewPagerAdapter(var context: Context, var data: ArrayList<AttachmentsModel>) : PagerAdapter() {
 
     override fun getCount(): Int {
         return data.size

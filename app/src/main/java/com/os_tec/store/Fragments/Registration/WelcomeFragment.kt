@@ -12,6 +12,7 @@ import com.os_tec.store.databinding.FragmentWelcomeBinding
 
 class WelcomeFragment : Fragment() {
     lateinit var binding: FragmentWelcomeBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

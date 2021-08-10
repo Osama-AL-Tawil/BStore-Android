@@ -9,17 +9,18 @@ import android.widget.EditText
 import android.widget.Toast
 import com.os_tec.store.R
 
-class Validation(val activity: Activity) {
+class Validation() {
     private var bool:Boolean=true
+    val context=MyApp.appContext
     private val logKey="ValidationClass.OS"
 
 
     fun validateEmail(value:String):Boolean {
          if (TextUtils.isEmpty(value)) {
-            toastMessage(activity.resources.getString(R.string.EmptyField))
+            toastMessage(context.resources.getString(R.string.EmptyField))
             return false
         } else if (!Patterns.EMAIL_ADDRESS.matcher(value).matches()) {
-             toastMessage(activity.resources.getString(R.string.WrongEmail))
+             toastMessage(context.resources.getString(R.string.WrongEmail))
 
              return false
         }
@@ -29,7 +30,7 @@ class Validation(val activity: Activity) {
 
     fun validateEditText(value:String):Boolean {
          if (TextUtils.isEmpty(value)) {
-            toastMessage(activity.resources.getString(R.string.EmptyField))
+            toastMessage(context.resources.getString(R.string.EmptyField))
             return false
         }
         return bool
@@ -37,15 +38,15 @@ class Validation(val activity: Activity) {
 
     fun validatePhone(phoneNumber:String):Boolean {
         if (phoneNumber.trim() == "") {
-            toastMessage(activity.resources.getString(R.string.EmptyField))
+            toastMessage(context.resources.getString(R.string.EmptyField))
             bool= false
 
         }else if (phoneNumber.length < 10) {
-            toastMessage(activity.resources.getString(R.string.WrongPhone))
+            toastMessage(context.resources.getString(R.string.WrongPhone))
             bool= false
 
         } else if (!Patterns.PHONE.matcher(phoneNumber).matches()) {
-            toastMessage(activity.resources.getString(R.string.WrongPhone))
+            toastMessage(context.resources.getString(R.string.WrongPhone))
 
             bool= false
         }
@@ -55,7 +56,7 @@ class Validation(val activity: Activity) {
 
 
     private fun toastMessage(message:String){
-        Toast.makeText(activity,message,Toast.LENGTH_LONG).show()
+        Toast.makeText(context,message,Toast.LENGTH_LONG).show()
     }
 
     fun logMessage(message:String){

@@ -10,6 +10,8 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.os_tec.store.Activities.Navigation2Activity
 import com.os_tec.store.Adapters.ViewPagerAdapter
+import com.os_tec.store.Api.ApiRepository
+import com.os_tec.store.Classes.SharedPreferences
 import com.os_tec.store.Model.CardDataModel
 import com.os_tec.store.databinding.FragmentPaymentBinding
 
@@ -22,45 +24,28 @@ class PaymentFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentPaymentBinding.inflate(inflater, container, false)
+        (activity as Navigation2Activity).backPressedNV=2
 
 
         val creditCardArray=ArrayList<CardDataModel>()
-
         creditCardArray.add(CardDataModel("4533  8664  214  46","25/6"," Mr OSAMA F O ALTAWIL"))
-        creditCardArray.add(CardDataModel("1546  2648  789  85","14/4","Mr SAMI G J SAMI"))
-        creditCardArray.add(CardDataModel("9874  8798  654  68","24/7","Mr JAMAL A R JAMAL"))
-        creditCardArray.add(CardDataModel("6547  9874  564  81","15/2","Mr HANI G J HANI"))
+
+        setViewPagerAdapter(creditCardArray) //set adapter
 
 
 
-        // create view pager and set images and adapter
-        val  adapter: PagerAdapter = ViewPagerAdapter(requireContext(), creditCardArray)
-        val viewPager=binding.ViewPager
-        viewPager.currentItem = 1
-        viewPager.setPadding(50,0,50,0)
-        viewPager.adapter=adapter
-
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-                //Toast.makeText(requireContext(),creditCardArray[position].cardNo,Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onPageSelected(position: Int) {
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {
-
-            }
-
-        })
 
 
 
         binding.btnCheckout.setOnClickListener {
+            //get ids from shared preferences and add in Map
+            val params =HashMap<String,Any>()
+            params["cart_ids"]=SharedPreferences().getIdsArray() as ArrayList<*>
+
+            ApiRepository(requireActivity()).payment("paymentFragment",params)// payment
+
+            SharedPreferences().removeIds() // remove card_ids from SharedPreferences
+
             (activity as Navigation2Activity).startFragment((activity as Navigation2Activity).checkOutFragment)
         }
 
@@ -69,17 +54,34 @@ class PaymentFragment : Fragment() {
 
 
 
-        //on backPressed Clicked-------------------------------------------------------------------
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    (activity as Navigation2Activity).startFragment((activity as Navigation2Activity).addressFragment)
-                    //Toast.makeText(requireActivity(),"Payment Fragment", Toast.LENGTH_SHORT).show()
-
-                }
-            })
         return binding.root
     }
 
+private fun setViewPagerAdapter(array:ArrayList<CardDataModel>){
+    // create view pager and set images and adapter
+    val  adapter: PagerAdapter = ViewPagerAdapter(requireContext(), array)
+    val viewPager=binding.ViewPager
 
+    viewPager.currentItem = 1
+    viewPager.setPadding(50,0,50,0)
+    viewPager.adapter=adapter
+
+    viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
+            //Toast.makeText(requireContext(),creditCardArray[position].cardNo,Toast.LENGTH_SHORT).show()
+        }
+
+        override fun onPageSelected(position: Int) {
+        }
+
+        override fun onPageScrollStateChanged(state: Int) {
+
+        }
+
+    })
+}
 }
